@@ -109,8 +109,32 @@ group by employees.EmployeeId
 order by Total_Sales desc
 Limit 1 
 
+13.
+Find the top 10 customers based on their total purchase amount.
+select customers.CustomerId,customers.FirstName, 
+customers.LastName,sum(invoices.Total) Total_Spent
+from customers
+join invoices
+on invoices.customerid = customers.CustomerId
+group by customers.CustomerId
+order by Total_Spent desc
+limit 10 
 
 
+14.Find the top 3 sales agents (employees) based on the 
+total revenue generated from their customers' purchases. 
+Include the number of customers each sales agent has served and
+the average purchase amount per customer for each of the top 3 sales agents.
+
+select employees.EmployeeId,employees.FirstName,
+employees.LastName,count(customers.CustomerId) Total_Customers,
+round(Avg(invoices.Total),2) as Avg_Total
+from employees
+join customers 
+on employees.EmployeeId = customers.SupportRepId
+join invoices
+on customers.CustomerId = invoices.customerid
+group by employees.EmployeeId
 
 
 
