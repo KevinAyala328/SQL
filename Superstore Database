@@ -24,3 +24,35 @@ VALUES
     (13, 'Slow Cooker', 'Appliances', 49.95, 30, 4.7),
     (14, 'Cutlery Set', 'Kitchen Supplies', 34.50, 40, 4.4),
     (15, 'Cozy Throw Blanket', 'Furnishings', 24.99, 100, 4.2);
+
+Write a SQL query that orders the items by price.
+
+Select *
+from superstore
+order by price
+
+Write your own SQL query that will show a statistic about the item prices, like a sum, average, minimum, maximum, or count.
+
+Select category, round(avg(price),2) Avg_Price
+from superstore
+group by category
+
+
+Write your own SQL query that will show a statistic about the price for items in the category of "Kitchen Supplies".
+NOTE: The values in the categories column are called text strings, and text strings are case sensitive. 
+That means if you want to select "Kitchen Supplies", you will need to type it exactly as it appears in the data, i.e., with a capital "K" and a capital "S".
+
+Select item_name Item,Category,Price,Stock_Quantity
+from superstore
+where category = "Kitchen Supplies"
+
+Come up with your own question about the data and try to answer it using SQL. For example: How many air purifiers are in stock?
+It's okay if you can't figure out how to answer your question, the idea here is to practice thinking about what kinds of insights you can get from a dataset from asking questions about it.
+
+What is the total stock quantity for each category, and which category has the most items in stock?
+
+
+Select Category,sum(stock_quantity)as Total_Stock
+from superstore
+group by category
+order by Total_Stock desc
